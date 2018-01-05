@@ -5,6 +5,7 @@ import js.annotation._
 import js.|
 
 import rxscalajs.subscription.Subscription
+import rxscalajs.facade.ObservableFacade
 
 
 @js.native
@@ -16,5 +17,5 @@ class HotObservable extends js.Object {
 @js.native
 @JSGlobal("Rx.TestScheduler")
 class TestScheduler extends js.Object {
-  def createHotObservable[T](marbles: String): HotObservable = js.native
+  def createHotObservable[T](marbles: String): ObservableFacade[T] = js.native
 }
