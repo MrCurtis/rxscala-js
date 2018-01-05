@@ -17,5 +17,5 @@ class HotObservable extends js.Object {
 @js.native
 @JSGlobal("Rx.TestScheduler")
 class TestScheduler extends js.Object {
-  def createHotObservable[T](marbles: String): ObservableFacade[T] = js.native
+  def createHotObservable[T](marbles: T): ObservableFacade[T] = js.native
 }
