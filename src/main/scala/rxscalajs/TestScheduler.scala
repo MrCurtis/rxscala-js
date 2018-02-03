@@ -13,12 +13,6 @@ import rxscalajs.facade.{ObservableFacade, SubjectFacade}
   //def toBe(marbles: String): Unit
 //}
 
-@js.native
-@JSImport("rxjs/Rx", "HotObservable", globalFallback = "Rx.HotObservable")
-class HotObservableFacade[T] protected() extends SubjectFacade[T] {
-  def setup(): Unit = js.native
-}
-
 //@js.native
 //@JSGlobal("Rx.TestScheduler")
 //class TestScheduler extends js.Object {
