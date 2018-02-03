@@ -9,7 +9,10 @@ import rxscalajs.facade.HotObservableFacade
 object HotObservableTest extends TestSuite {
   def tests = TestSuite {
     'FacadeTests {
-      val obs = HotObservableFacade.of(1,11,21,1211,111221)
+      val cw = new TestScheduler()
+      val hotOb = cw.createHotObservable("1-2-3-4")
+      hotOb.asObservable()
+      val eO = cw.expectObservable
     }
   }
 }
