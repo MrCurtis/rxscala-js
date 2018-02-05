@@ -15,8 +15,9 @@ trait WithObservableToBeFunction extends js.Object {
 
 @js.native
 @JSGlobal("Rx.TestScheduler")
-class TestScheduler extends js.Object {
+class TestScheduler(assertDeepEqual: js.Function2[Any, Any, Boolean]) extends js.Object {
   def createHotObservable[T](marbles: T): HotObservableFacade[T] = js.native
   def createColdObservable[T](marbles: T): ObservableFacade[T] = js.native
-  def expectObservable[T](observable: Observable[T]): WithObservableToBeFunction = js.native
+  def expectObservable[T](observable: ObservableFacade[T]): WithObservableToBeFunction = js.native
+  def flush(): Unit = js.native
 }
