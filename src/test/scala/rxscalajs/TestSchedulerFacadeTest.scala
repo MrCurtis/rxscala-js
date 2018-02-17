@@ -36,9 +36,22 @@ object TestSchedulerTests extends TestSuite {
       val x = MyCase(1, "two")
       val y = MyCase(1, "two")
       val ts = TestScheduler((x,y) => assert(DeepEqual(x, y)))
-      val coldOb = ts.createColdObservable("^1-2", Map("1" -> x, "2" -> x))
-      ts.expectObservable(coldOb).toBe("-1-2", Map("1" -> y, "2" -> y))
+      val coldOb = ts.createColdObservable("1-2", Map("1" -> x, "2" -> x))
+      ts.expectObservable(coldOb).toBe("1-2", Map("1" -> y, "2" -> y))
       ts.flush()
+    }
+    "Raises exception when observables not deep-equal" - {
+      val x = MyCase(1, "two")
+      val y = MyCase(1, "three")
+      val ts = TestScheduler((x,y) => assert(DeepEqual(x, y)))
+      val coldOb = ts.createColdObservable("1-2", Map("1" -> x, "2" -> x))
+      ts.expectObservable(coldOb).toBe("1-2", Map("1" -> x, "2" -> y))
+      val error = intercept[AssertionError] {
+        ts.flush()
+      }
+      assertMatch(error) {
+        case AssertionError(_, _, _) =>
+      }
     }
   }
 }
