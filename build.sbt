@@ -1,6 +1,5 @@
 lazy val root = project.in(file(".")).
-  enablePlugins(ScalaJSPlugin, SiteScaladocPlugin, GhpagesPlugin).
-  enablePlugins(ScalaJSBundlerPlugin)
+  enablePlugins(ScalaJSPlugin, SiteScaladocPlugin,ScalaJSBundlerPlugin)
 
 name := "RxScala.js"
 
@@ -10,7 +9,7 @@ version := "0.15.1"
 
 organization := "com.github.lukajcb"
 
-scalaVersion := "2.12.3"
+scalaVersion := "2.12.4"
 
 crossScalaVersions := Seq("2.10.6", "2.11.11", "2.12.3")
 
@@ -24,9 +23,7 @@ libraryDependencies ++= Seq(
 
 testFrameworks += new TestFramework("utest.runner.Framework")
 
-ghpages.settings
-
-npmDependencies in Compile += "rxjs" -> "5.4.3"
+npmDependencies in Test += "rxjs" -> "5.4.3"
 npmDependencies in Test += "deep-equal" -> "1.0.1"
 
 git.remoteRepo := "git@github.com:LukaJCB/rxscala-js.git"
